@@ -54,19 +54,29 @@ const HowItWorks = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 }}
-                            className="relative"
+                            className="relative group"
                         >
-                            <div className="bg-white dark:bg-gray-700 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow h-full">
-                                <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${step.color} flex items-center justify-center text-white mb-6`}>
+                            <motion.div
+                                whileHover={{
+                                    scale: 1.05,
+                                    transition: { duration: 0.2 }
+                                }}
+                                className="bg-white dark:bg-gray-700 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 h-full border border-transparent hover:border-gray-200 dark:hover:border-gray-600"
+                            >
+                                <motion.div
+                                    whileHover={{ scale: 1.1, rotate: 5 }}
+                                    className={`w-16 h-16 rounded-xl bg-gradient-to-r ${step.color} flex items-center justify-center text-white mb-6 transform transition-transform duration-300 group-hover:shadow-lg`}
+                                >
                                     {step.icon}
-                                </div>
-                                <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                                </motion.div>
+                                <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                                     {step.title}
                                 </h3>
-                                <p className="text-gray-600 dark:text-gray-300">
+                                <p className="text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-100 transition-colors duration-300">
                                     {step.description}
                                 </p>
-                            </div>
+                                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </motion.div>
                             {index < steps.length - 1 && (
                                 <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-600 dark:to-gray-500" />
                             )}
@@ -81,9 +91,12 @@ const HowItWorks = () => {
                     className="mt-16 text-center"
                 >
                     <motion.button
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{
+                            scale: 1.05,
+                            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                        }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
+                        className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                     >
                         Start Selling Now
                     </motion.button>
